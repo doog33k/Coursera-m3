@@ -10,6 +10,8 @@ module.exports = function (grunt) {
         useminPrepare: 'grunt-usemin'
     });
 
+
+
     // Define the configuration for all the tasks
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -33,11 +35,11 @@ module.exports = function (grunt) {
                 tasks: [ 'build' ]
             },
             scripts: {
-                files: ['app/scripts/app.js'],
+                files: ['app/scripts/*.js'],
                 tasks:[ 'build']
             },
             styles: {
-                files: ['app/styles/mystyles.css'],
+                files: ['app/styles/*.css'],
                 tasks:['build']
             },
             livereload: {
@@ -64,7 +66,7 @@ module.exports = function (grunt) {
                     base:{
                         path: 'dist',
                         options: {
-                            index: 'menu.html',
+                            index: 'index.html',
                             maxAge: 300000
                         }
                     }
@@ -72,7 +74,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: 'app/menu.html',
+            html: 'app/index.html',
             options: {
                 dest: 'dist'
             }
@@ -175,4 +177,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('serve',['build','connect:dist','watch']);
+
+    grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('ngAnnotate');
 };

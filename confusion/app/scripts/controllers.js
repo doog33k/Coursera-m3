@@ -95,13 +95,13 @@ angular.module('confusionApp')
 
         // implement the IndexController and About Controller here
 
-        .controller('IndexController', ['$scope', function($scope) {
-
+        .controller('IndexController', ['$scope','corporateFactory', function($scope, corporateFactory) {
+            $scope.leader =  corporateFactory.getLeader(0);
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
             var leaders = corporateFactory.getLeaders();
             $scope.leaders = leaders;
 
-            $scope.leader =  corporateFactory.getLeader(0);;
-        }])
+
+        }]);
