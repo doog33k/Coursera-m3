@@ -87,10 +87,14 @@ module.exports = function (grunt) {
             // dist configuration is provided by useminPrepare
             dist: {}
         },
+
         // Uglify
         uglify: {
             // dist configuration is provided by useminPrepare
-            dist: {}
+            dist: {},
+            options: {
+                mangle: false
+            }
         },
         cssmin: {
             dist: {}
@@ -170,14 +174,14 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concat',
         'cssmin',
-        'uglify',
+'uglify',
         'copy',
         'filerev',
         'usemin'
     ]);
-
+    grunt.loadNpmTasks('grunt-ng-annotate');
+   // grunt.loadNpmTasks('ng-annotate');
     grunt.registerTask('serve',['build','connect:dist','watch']);
 
-    grunt.loadNpmTasks('grunt-ng-annotate');
-    grunt.loadNpmTasks('ngAnnotate');
+
 };

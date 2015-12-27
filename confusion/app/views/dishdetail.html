@@ -34,9 +34,9 @@
             <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
                     <ul class="list-unstyled" ng-hide="commentForm.$invalid || commentForm.$pristine">
 						<blockquote>
-							<p>{{dishComment.rating}} Stars</p>
-							<p>{{dishComment.comment}}</p>
-							<footer>{{dishComment.author}}, {{dishComment.date | date : 'MMM. dd, yyyy'}}</footer>
+							<p>{{mycomment.rating}} Stars</p>
+							<p>{{mycomment.comment}}</p>
+							<footer>{{mycomment.author}}, {{mycomment.date | date : 'MMM. dd, yyyy'}}</footer>
 						</blockquote>
                     </ul>
                 <form class="form-horizontal" name="commentForm"
@@ -44,20 +44,20 @@
 					<div class="form-group" ng-class="{ 'has-error' : commentForm.name.$error.required && !commentForm.name.$pristine }">
                         <label for="name" class="col-sm-2 control-label">Your Name</label>
                         <div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" ng-model="dishComment.author" required>
+							<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" ng-model="mycomment.author" required>
 							<span ng-show="commentForm.name.$error.required && !commentForm.name.$pristine" class="help-block">Your Name is required.</span>
                         </div>
                     </div>
 					<div class="form-group">
                         <label for="{{rat}}" class="col-xs-12 col-sm-2 control-label">Number of Stars</label>
                         <div class="col-xs-12 col-sm-10">
-							<label class="radio-inline" ng-repeat="rat in ratings" for={{rat}}><input type="radio" ng-model="dishComment.rating" ng-value="rat" id="{{rat}}" name="rating"> {{rat}}</label>
+							<label class="radio-inline" ng-repeat="rat in ratings" for={{rat}}><input type="radio" ng-model="mycomment.rating" ng-value="rat" id="{{rat}}" name="rating"> {{rat}}</label>
                         </div>
                     </div>
 					<div class="form-group" ng-class="{ 'has-error' : commentForm.usercomment.$error.required && !commentForm.usercomment.$pristine }">
                         <label for="usercomment" class="col-sm-2 control-label">Your Comments</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="usercomment" name="usercomment" rows="12" ng-model="dishComment.comment" required></textarea>
+                            <textarea class="form-control" id="usercomment" name="usercomment" rows="12" ng-model="mycomment.comment" required></textarea>
 							<span ng-show="commentForm.usercomment.$error.required && !commentForm.usercomment.$pristine" class="help-block">Your comments are required.</span>
                         </div>
                     </div> 

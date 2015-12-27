@@ -79,7 +79,8 @@ angular.module('confusionApp')
         .controller('DishCommentController', ['$scope', function($scope) {
             
             $scope.mycomment = {rating:5, comment:"", author:"", date:""};
-            
+            $scope.ratings=[1,2,3,4,5];
+
             $scope.submitComment = function () {
                 
                 $scope.mycomment.date = new Date().toISOString();
@@ -95,8 +96,10 @@ angular.module('confusionApp')
 
         // implement the IndexController and About Controller here
 
-        .controller('IndexController', ['$scope','corporateFactory', function($scope, corporateFactory) {
+        .controller('IndexController', ['$scope','corporateFactory','menuFactory', function($scope, corporateFactory,menuFactory) {
+            $scope.feature =  menuFactory.getDish(0);
             $scope.leader =  corporateFactory.getLeader(0);
+            $scope.promotion = menuFactory.getPromotion(0);
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
