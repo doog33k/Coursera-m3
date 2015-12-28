@@ -18,7 +18,7 @@ var ngannotate = require('gulp-ng-annotate');
 
 var bower = require('gulp-bower');
 
-gulp.task('bower', function() {
+gulp.task('bower',['clean'], function() {
     return bower()
         .pipe(gulp.dest('lib/'))
 });
@@ -35,7 +35,7 @@ gulp.task('clean', function() {
 });
 
 // Default task
-gulp.task('default', ['clean','bower'], function() {
+gulp.task('default', ['bower'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');
 });
 
@@ -86,10 +86,13 @@ gulp.task('browser-sync', ['default'], function () {
     ];
 
     browserSync.init(files, {
+
         server: {
             baseDir: "dist",
-            index: "index.html"
-        }
+            index: "index.html",
+
+        },
+        port: 3010
     });
 
     // Watch any files in dist/, reload on change
