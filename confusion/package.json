@@ -19,7 +19,6 @@
     "gulp-usemin": "^0.3.16",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
-    "gulp-ng-annotate": "^1.1.0"
   },
   "engines": {
     "node": ">=0.10.0"
