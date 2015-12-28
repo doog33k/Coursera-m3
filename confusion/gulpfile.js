@@ -16,6 +16,13 @@ var gulp = require('gulp'),
 
 var ngannotate = require('gulp-ng-annotate');
 
+var bower = require('gulp-bower');
+
+gulp.task('bower', function() {
+    return bower()
+        .pipe(gulp.dest('lib/'))
+});
+
 gulp.task('jshint', function() {
     return gulp.src('app/scripts/**/*.js')
         .pipe(jshint())
@@ -28,7 +35,7 @@ gulp.task('clean', function() {
 });
 
 // Default task
-gulp.task('default', ['clean'], function() {
+gulp.task('default', ['clean','bower'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');
 });
 
@@ -46,7 +53,7 @@ gulp.task('usemin',['jshint'], function () {
 
 // Images
 gulp.task('imagemin', function() {
-    return del(['dist/images']), gulp.src('app/images/**/*')
+    return del(['dist/images']),gulp.src('app/images/**/*')
         .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
         .pipe(gulp.dest('dist/images'))
        // .pipe(notify({ message: 'Images task complete' }))
