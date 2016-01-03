@@ -1,4 +1,5 @@
-var gulp = require('gulp'),
+//var gulp = require('gulp'),
+var gulp = require('gulp-run-seq');  // returns the gulp object.
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
@@ -91,7 +92,7 @@ gulp.task('browser-sync', ['default'], function () {
             baseDir: "dist",
             index: "index.html"
         },
-        port: 3010
+        port: 3001
     });
 
     // Watch any files in dist/, reload on change
