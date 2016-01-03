@@ -134,8 +134,16 @@ angular.module('confusionApp')
                     }
                 );
 
-            $scope.leader =  corporateFactory.getLeader(0);
-      ;
+            $scope.leader = corporateFactory.getLeaders().get({id:0})
+                .$promise.then(
+                    function(response){
+                        $scope.leader = response;
+                        $scope.showLeader = true;
+                    },
+                    function(response) {
+                        $scope.message = "Error: "+response.status + " " + response.statusText;
+                    }
+                );
 
             $scope.promotion = menuFactory.getPromotions().get({id:0})
                 .$promise.then(
@@ -150,8 +158,17 @@ angular.module('confusionApp')
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
-            var leaders = corporateFactory.getLeaders();
-            $scope.leaders = leaders;
+            $scope.showLeaders = false;
+            $scope.message="Loading ...";
+
+            $scope.leaders = corporateFactory.getLeaders().query(
+                function(response) {
+                    $scope.leaders = response;
+                    $scope.showLeaders = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                });
 
 
         }]);
